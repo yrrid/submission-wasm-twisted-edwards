@@ -67,7 +67,8 @@ Open Chrome and browse to [http://localhost:4040/](http://localhost:4040/)
 
 In this section, we give a high level overview of the optimizations we have used to accelerate the MSM computation:
 
--  Pippenger bucket algorithm, supporting window lengths of 14 and 16 bits.
+-  Our implementation was written completely in C and cross compiled to WASM.
+-  We used Pippenger's bucket algorithm, supporting window lengths of 14 and 16 bits.
 -  We slice the scalars, and use a parallel bin sort algorithm to build a list of points for each Pippenger bucket.
 -  We use signed digits to minimize the number of buckets in the system.
 -  We use parallel algorithms (run across multiple cores) for bucket accumulation, and bucket reduction.
