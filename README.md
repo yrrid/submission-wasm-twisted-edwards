@@ -77,13 +77,11 @@ In this section, we give a high level overview of the optimizations we have used
    - This Twisted Edwards curve uses a 253-bit finite field.  We implement this using a sequence
      of 5x 51-bit limbs, where each limbs is stored as a 51-bit integer in an double precision
      FP64 value.   We use FMA hardware to compute low and high products.  The basic approach
-     is described in the paper [Faster Modular Exponentiation using Double Precision Floating
+     is described in the paper ["Faster Modular Exponentiation using Double Precision Floating
      Point Arithmetic on the GPU](http://www.acsel-lab.com/arithmetic/arith25/pdf/17.pdf), 
      *2018 IEEE 25th Symposium on Computer Arithmetic (ARITH)* by Emmart, Zheng and Weems.
-   - We use a [non-unified 7-product Twisted Edwards EC mixed addition]
-     (https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-madd-2008-hwcd-4)
-     for bucket accumulation and a [non-unified 8-product Twisted Edwards EC addition]
-     (https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-add-2008-hwcd-4)
+   - We use a [non-unified 7-product Twisted Edwards EC mixed addition](https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-madd-2008-hwcd-4)
+     for bucket accumulation and a [non-unified 8-product Twisted Edwards EC addition](https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-add-2008-hwcd-4)
      for bucket reduction.  
    - We use WASM 128-bit SIMD instructions to process two curve operations simulateously in each thread.
    - We just use the grade-school O(N^2) multiplication algorithm and word-by-word O(N^2) Montgomery
