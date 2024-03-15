@@ -3,7 +3,6 @@
 ## Introduction
 
 The following is Yrrid Software and [Snarkify](https://snarkify.io/) (joint team) Twisted Edwards WASM submission to the 2023 Z-Prize.
-[GitHub repository](https://github.com/yrrid/submission-wasm-twisted-edwards).
 
 ## The Goal
 
@@ -62,7 +61,7 @@ yarn start
 
 ### 4) Chrome Web Page
 
-Open Chrome and browse to `http://localhost:4040/`
+Open Chrome and browse to [http://localhost:4040/](http://localhost:4040/)
 
 ## Optimizations in our Solution
 
