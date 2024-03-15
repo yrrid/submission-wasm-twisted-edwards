@@ -10,14 +10,15 @@ Improve the performance of WASM based MSM on a Twisted Edwards curve based on th
 
 We have tested our solution on a MacBook Pro M2 laptop, with 10 cores.  Our solution uses multiple cores and
 SIMD, as specified by the competition.  We do not use the GPU for acceleration.  Performance seems
-to vary somewhat from run to run, with the first run being the slowest.  The first run has JIT compilation overhead.
+to vary somewhat from run to run, with the first run being the slowest, probably due to JIT compilation
+overhead.
  
 Ignoring the first run and averaging over a few runs, we oberve the following performance numbers on the MacBook Pro M2
 (10 cores):
 
 |Input Vector Length | Our WASM Submission (milliseconds) | 
 | --- | --- |
-| 2^16 | 46 |
+| 2^16 | 81 |
 | 2^17 | 117 |
 | 2^18 | 203 | 
 | 2^19 | 354 | 
