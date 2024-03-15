@@ -71,12 +71,12 @@ In this section, we give a high level overview of the optimizations we have used
 -  We used Pippenger's bucket algorithm, supporting window lengths of 14 and 16 bits.
 -  We slice the scalars, and use a parallel bin sort algorithm to build a list of points for each Pippenger bucket.
 -  We use signed digits to minimize the number of buckets in the system.
--  We use parallel algorithms (run across multiple cores) for bucket accumulation, and bucket reduction.
+-  We use parallel algorithms (run across multiple cores) for sorting, bucket accumulation, and bucket reduction.
 -  We haven't used any libraries (such as pthreads) to distribute work across threads, instead we have rolled our
    own, using atomic counters and a simple barrier mechanism.  For each major step in the computation, we break that
    step into small units of work, which are numbered 0 through n-1.  Each thread checks out a unit of work (using an
    atomic counter) and processes that unit.  Threads repeat that process until all n units of work are complete and
-   then the thread check in to a barrier before moving on to the next major step in the computation.  This work scheduling
+   then all threads check in to a barrier before moving on to the next major step in the computation.  This work scheduling
    is very fast and efficient on the architectures we tested.
 -  The FF and EC routines have been carefully optimized:
    - This Twisted Edwards curve uses a 253-bit finite field.  We implement this using a sequence of 5x 51-bit limbs,
