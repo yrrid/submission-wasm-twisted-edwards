@@ -1,7 +1,8 @@
 /***
 
-Copyright (c) 2023-2024, Yrrid Software, Inc.  All rights reserved.
-Licensed under the Apache License, Version 2.0, see LICENSE for details.
+Copyright (c) 2023-2024, Yrrid Software, Inc. and Snarkify Inc.  All rights reserved.
+Dual licensed under the MIT License or the Apache License, Version 2.0.
+See LICENSE for details.
 
 Author(s):  Niall Emmart
 
@@ -290,6 +291,14 @@ void pointPairXYTZ_store(I128* p1, I128* p2, PointPairXYTZ_t* pair) {
 void pointPairXYTZ_accumulateXYT_unified(PointPairXYTZ_t* acc, PointPairXYT_t* pt) {
   FieldPair_t T0, T1, A, B, C, D, E, F, G, H, k;
 
+  // For a better understanding of these assertions, please see SupportingFiles/AssertionChecking.java
+
+  // Input assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                   0 <= acc.z <= 3.20*N
+  //
+  //                   0 <= pt.x, pt.y, pt.t <= N
+
+  // https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-madd-2008-hwcd-3
   // Assumes acc.z and pt.t have been resolved.
   // Output: acc.z is resolved, acc.x, acc.y, acc.t are not resolved
 
@@ -342,11 +351,23 @@ void pointPairXYTZ_accumulateXYT_unified(PointPairXYTZ_t* acc, PointPairXYT_t* p
   fieldPairReduce(&acc->y, &acc->y);
   fieldPairReduce(&acc->t, &acc->t);
   fieldPairResolve(&acc->z, &acc->z);
+
+  // Output assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                    0 <= acc.z <= 3.20*N
 }
 
 void pointPairXYTZ_accumulateXYTZ_unified(PointPairXYTZ_t* acc, PointPairXYTZ_t* pt) {
   FieldPair_t T0, T1, A, B, C, D, E, F, G, H, k;
 
+  // For a better understanding of these assertions, please see SupportingFiles/AssertionChecking.java
+
+  // Input assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                   0 <= acc.z <= 3.20*N
+  //
+  //                   0 <= pt.x, pt.y, pt.t <= 1.01*N
+  //                   0 <= pt.z <= 3.20*N
+
+  // https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-add-2008-hwcd-3
   // Assumes acc.z and pt.t have been resolved.
   // Output: acc.z is resolved, acc.x, acc.y, acc.t are not resolved
 
@@ -400,10 +421,22 @@ void pointPairXYTZ_accumulateXYTZ_unified(PointPairXYTZ_t* acc, PointPairXYTZ_t*
   fieldPairReduce(&acc->y, &acc->y);
   fieldPairReduce(&acc->t, &acc->t);
   fieldPairResolve(&acc->z, &acc->z);
+
+  // Output assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                    0 <= acc.z <= 3.20*N
 }
 
 void pointPairXYTZ_accumulateXYT(PointPairXYTZ_t* acc, PointPairXYT_t* pt) {
   FieldPair_t T0, T1, A, B, C, D, E, F, G, H, Z;
+
+  // For a better understanding of these assertions, please see SupportingFiles/AssertionChecking.java
+
+  // Input assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                   0 <= acc.z <= 3.20*N
+  //
+  //                   0 <= pt.x, pt.y, pt.t <= N
+
+  // https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-madd-2008-hwcd-4
 
   // Assumes acc.z and pt.t have been resolved.
   // Output: acc.z is resolved, acc.x, acc.y, acc.t are not resolved
@@ -458,11 +491,23 @@ void pointPairXYTZ_accumulateXYT(PointPairXYTZ_t* acc, PointPairXYT_t* pt) {
   fieldPairReduce(&acc->y, &acc->y);
   fieldPairReduce(&acc->t, &acc->t);
   fieldPairResolve(&acc->z, &Z);
+
+  // Output assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                    0 <= acc.z <= 3.20*N
 }
 
 void pointPairXYTZ_accumulateXYTZ(PointPairXYTZ_t* acc, PointPairXYTZ_t* pt) {
   FieldPair_t T0, T1, A, B, C, D, E, F, G, H, Z;
 
+  // For a better understanding of these assertions, please see SupportingFiles/AssertionChecking.java
+
+  // Input assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                   0 <= acc.z <= 3.20*N
+  //
+  //                   0 <= pt.x, pt.y, pt.t <= 1.01*N
+  //                   0 <= pt.z <= 3.20*N
+
+  // https://www.hyperelliptic.org/EFD/g1p/auto-twisted-extended-1.html#addition-add-2008-hwcd-4
   // Assumes acc.z and pt.t have been resolved.
   // Output: acc.z is resolved, acc.x, acc.y, acc.t are not resolved
 
@@ -516,4 +561,7 @@ void pointPairXYTZ_accumulateXYTZ(PointPairXYTZ_t* acc, PointPairXYTZ_t* pt) {
   fieldPairReduce(&acc->y, &acc->y);
   fieldPairReduce(&acc->t, &acc->t);
   fieldPairResolve(&acc->z, &Z);
+
+  // Output assertion:  0 <= acc.x, acc.y, acc.t <= 1.01*N
+  //                    0 <= acc.z <= 3.20*N
 }

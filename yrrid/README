@@ -1,0 +1,3 @@
+This codebase was developed on a Windows i86 platform using SIMD FMA.  The same codebase can be
+compiled using clang-17 to generate a wasm file.   The Makefile
+

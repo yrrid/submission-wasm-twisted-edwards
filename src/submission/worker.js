@@ -1,3 +1,16 @@
+/***
+
+Copyright (c) 2022-2024, Yrrid Software, Inc. and Snarkify Inc.  All rights reserved.
+Dual licensed under the MIT License or the Apache License, Version 2.0.
+See LICENSE for details.
+
+Author(s):  Anthony Suresh
+            Sougata Bhattacharya
+            Niall Emmart
+
+
+***/
+
 var instantiation=null;
 
 async function wasmInstantiate(message) {

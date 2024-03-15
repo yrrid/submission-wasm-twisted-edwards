@@ -11,7 +11,7 @@ SRC := MSM.c
 all: clean msm.wasm
 
 clean:
-	rm -f msm.o msm.wasm
+	rm -f msm.o msm.wasm x86simd*
 
 msm.o: MSM.c
 	clang-17 $(CFLAGS) -c MSM.c -o msm.o
@@ -19,3 +19,5 @@ msm.o: MSM.c
 msm.wasm: msm.o
 	wasm-ld $(LD_FLAGS) msm.o -o msm.wasm	
 
+x86simd:
+	gcc -mfma -fopenmp -O3 -DX86 MSM.c -o x86simd 

@@ -1,9 +1,12 @@
 /***
 
-Copyright (c) 2023-2024, Yrrid Software, Inc.  All rights reserved.
-Licensed under the Apache License, Version 2.0, see LICENSE for details.
+Copyright (c) 2023-2024, Yrrid Software, Inc. and Snarkify Inc.  All rights reserved.
+Dual licensed under the MIT License or the Apache License, Version 2.0.
+See LICENSE for details.
 
 Author(s):  Niall Emmart
+            Antony Suresh
+            Sougata Bhattacharya
 
 ***/
 
